@@ -16,10 +16,7 @@ public class Task3 {
         {
             int[] res = new int[inputArray.length];
             res[0] = inputArray[inputArray.length - 1];
-            for (int i = 0; i < inputArray.length - 1; i++)
-            {
-                res[i + 1] = inputArray[i];
-            }
+            System.arraycopy(inputArray, 0, res, 1, inputArray.length - 1);
             return res;
         }
         return new int[0];
@@ -118,7 +115,7 @@ public class Task3 {
             {
                 return "";
             }
-            String res = "";
+            StringBuilder res = new StringBuilder();
             char key = input.charAt(0);
             int count = 1;
             for (int i = 1; i < input.length(); i++)
@@ -128,14 +125,14 @@ public class Task3 {
                     count++;
                     continue;
                 }
-                res += key;
-                res += count;
+                res.append(key);
+                res.append(count);
                 key = input.charAt(i);
                 count = 1;
             }
-            res += key;
-            res += count;
-            return res;
+            res.append(key);
+            res.append(count);
+            return res.toString();
         }
         return "";
     }
@@ -149,11 +146,11 @@ public class Task3 {
      */
     boolean isPermutation(String one, String two)
     {
-        if (one == null || two == null || (one.isBlank() && two.isBlank()))
+        if (one == null || two == null || (one.length() == 0 && two.length() == 0))
         {
             return false;
         }
-        HashMap<Character, Integer> counter = new HashMap<Character, Integer>();
+        HashMap<Character, Integer> counter = new HashMap<>();
         for (char c : one.toCharArray())
         {
             if (!counter.containsKey(c))
@@ -180,11 +177,7 @@ public class Task3 {
                 }
             }
         }
-        if (counter.isEmpty())
-        {
-            return true;
-        }
-        return false;
+        return counter.isEmpty();
     }
 
     /**
@@ -253,14 +246,14 @@ public class Task3 {
         {
             sep = separator;
         }
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < inputStrings.length - 1; i++)
         {
-            res += inputStrings[i];
-            res += sep;
+            res.append(inputStrings[i]);
+            res.append(sep);
         }
-        res += inputStrings[inputStrings.length - 1];
-        return res;
+        res.append(inputStrings[inputStrings.length - 1]);
+        return res.toString();
     }
 
     /**
